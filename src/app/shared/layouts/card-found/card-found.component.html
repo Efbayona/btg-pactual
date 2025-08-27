@@ -1,0 +1,23 @@
+<div class="content-card">
+  <div class="card-header">
+    <div class="title-card">
+      <span class="title">{{ found.name }}</span>
+    </div>
+    <span class="card-description">
+      {{ found.description }}
+    </span>
+  </div>
+  <div class="card-content">
+    <div class="amount-card">
+      <span>Monto Mínimo</span>
+      <span>COP {{ found.minAmount | number:'1.0-0' }}</span>
+    </div>
+    <div class="risk-card">
+      <span>Riesgo</span>
+      <span>Alto</span>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn" (click)="subscription(found)">Suscribirse Ahora</button>
+  </div>
+</div>

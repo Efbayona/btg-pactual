@@ -1,16 +1,23 @@
 <div class="wrapper-dashboard">
   <div class="sidebar">
     <div class="sidebar-header">
-      <h1>InvestFunds</h1>
+      <h1>Fondos de Inversion</h1>
       <p>Panel de Control</p>
     </div>
     <nav class="sidebar-nav">
-      <button class="nav-btn" [ngClass]="{ active: selectedTab === 'history' }" (click)="setTab('history')"><i class="icon-activity"></i>Historial</button>
-      <button class="nav-btn" [ngClass]="{ active: selectedTab === 'my-funds' }" (click)="setTab('my-funds')"><i class="icon-id-card"></i>Mis Fondos</button>
+      <button class="nav-btn"
+              routerLink="/founds"
+              routerLinkActive="active">
+        <i class="icon-id-card"></i> Mis Fondos
+      </button>
+      <button class="nav-btn"
+              routerLink="/history"
+              routerLinkActive="active">
+        <i class="icon-activity"></i> Historial
+      </button>
     </nav>
   </div>
-  <div class="content-table">
-    <app-table></app-table>
+  <div class="content-body">
+  <router-outlet></router-outlet>
   </div>
-
 </div>

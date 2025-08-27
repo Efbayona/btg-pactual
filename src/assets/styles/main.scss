@@ -5,12 +5,15 @@
 @use "base/typography";
 @use "base/base";
 
-/*** 4. Pages ***/
-@use "pages/subscriber";
+/*** 3. Pages ***/
+@use "pages/founds";
 
 /*** 4. Components ***/
 @use "components/table";
-@use "components/header";
 @use "components/alerts";
+@use "components/subscriber";
+@use "components/cancellation";
+@use "components/card-found";
+@use "components/create-user";
 
 

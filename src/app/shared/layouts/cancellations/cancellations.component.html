@@ -1,0 +1,14 @@
+<div class="content-cancellation">
+  <div class="cancellation-header">
+    <div class="close-cancellation">
+      <span class="form-group-title">{{ title }}</span>
+      <i class="icon-close" (click)="destroyModal()"></i>
+    </div>
+    <span class="form-group-text">{{ subtitle }}</span>
+  </div>
+  <img src="/assets/images/cancelled.png" alt="cancel">
+  <span class="form-group-text">¿Estás seguro de que deseas cancelar tu suscripción al fondo? Esta acción es permanente y no se podrá deshacer</span>
+  <div class="content-buttons">
+    <button class="btn" (click)="cancelFound()">Cancelar suscripción al fondo</button>
+  </div>
+</div>

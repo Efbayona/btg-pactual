@@ -1,2 +1,4 @@
-<!--<router-outlet></router-outlet>-->
+@if (loading | async) {
+  <app-loading></app-loading>
+}
 <app-main></app-main>

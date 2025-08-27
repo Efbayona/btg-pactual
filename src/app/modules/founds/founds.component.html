@@ -1,0 +1,15 @@
+<div class="wrapper-found">
+  <div class="content-header">
+    <span>Fondos de Inversión</span>
+    <span>
+    Descubre nuestros fondos de inversión diseñados para diferentes perfiles de riesgo y objetivos financieros.
+  </span>
+  </div>
+  <div class="content-cards-founds">
+    <div class="content-cards-founds">
+      @for(found of founds; track found.id) {
+      <app-card-found [found]="found"></app-card-found>
+      }
+    </div>
+  </div>
+</div>

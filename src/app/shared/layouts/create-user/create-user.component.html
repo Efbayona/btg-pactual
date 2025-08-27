@@ -1,0 +1,51 @@
+<div class="content-create-user">
+  <div class="create-user-header">
+    <div class="close-create-user">
+      <span class="form-group-title">{{ title }}</span>
+      <i class="icon-close" (click)="destroyModal()"></i>
+    </div>
+    <span class="form-group-text">{{ subtitle }}</span>
+  </div>
+  <form class="content-form-create-user" [formGroup]="formCreateUser">
+    <div class="grid">
+      <!-- Nombre -->
+      <div class="col-6 lg:col-6">
+        <div class="input-group">
+          <input type="text" formControlName="name" appValidateErrors/>
+          <label class="input-title">Nombre (*)</label>
+        </div>
+      </div>
+      <!-- Apellido -->
+      <div class="col-6 lg:col-6">
+        <div class="input-group">
+          <input type="text" formControlName="lastName" appValidateErrors/>
+          <label class="input-title">Apellido (*)</label>
+        </div>
+      </div>
+      <!-- Correo -->
+      <div class="col-12 lg:col-12">
+        <div class="input-group">
+          <input type="email" formControlName="email" appValidateErrors/>
+          <label class="input-title">Correo electrónico (*)</label>
+        </div>
+      </div>
+      <!-- Número de documento -->
+      <div class="col-6 lg:col-6">
+        <div class="input-group">
+          <input type="text" formControlName="documentNumber" appValidateErrors/>
+          <label class="input-title">Número de Documento (*)</label>
+        </div>
+      </div>
+      <!-- Teléfono -->
+      <div class="col-6 lg:col-6">
+        <div class="input-group">
+          <input type="text" formControlName="phoneNumber" appValidateErrors/>
+          <label class="input-title">Teléfono (*)</label>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="content-button">
+    <button class="btn" (click)="createUser()">Crear Usuario</button>
+  </div>
+</div>

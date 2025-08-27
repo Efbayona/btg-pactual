@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -13,11 +13,15 @@ import {
   MatTable,
   MatTableDataSource
 } from '@angular/material/table';
-import { CurrencyPipe, NgClass, NgForOf } from '@angular/common';
-import { MatButton, MatIconButton } from '@angular/material/button';
+import {AsyncPipe, NgClass} from '@angular/common';
+import {MatButton} from '@angular/material/button';
 import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
-import {SubscribeComponent} from '@app/shared/subscribe/subscribe.component';
 import {MatDialog} from '@angular/material/dialog';
+import {CancellationsComponent} from '@app/shared/layouts/cancellations/cancellations.component';
+import {CreateUserComponent} from '@app/shared/layouts/create-user/create-user.component';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {LoadingService} from '@app/core/services/loading/loading.service';
+import {Observable} from 'rxjs';
 
 export interface Fondo {
   id: string;
@@ -39,21 +43,23 @@ export interface Fondo {
     MatRowDef,
     MatHeaderRowDef,
     MatNoDataRow,
-    NgForOf,
     MatButton,
     MatCellDef,
-    MatIconButton,
-    CurrencyPipe,
     NgClass,
     ReactiveFormsModule,
+    MatProgressSpinner,
+    AsyncPipe,
   ],
   templateUrl: './table.component.html',
   standalone: true,
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
+  public loadingTable: Observable<boolean>;
 
-  constructor( public dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+              private _loader: LoadingService) {
+    this.loadingTable = this._loader.loadingTable$;
   }
 
   searchFilter: FormControl = new FormControl('', [Validators.maxLength(30)]);
@@ -64,11 +70,10 @@ export class TableComponent {
     );
   }
 
-  // ✅ Datos de prueba iniciales
   defaultFondos: Fondo[] = [
-    { id: '1', nombre: 'Fondo de Inversión A', montoMinimo: 100000, estado: 'Disponible' },
-    { id: '2', nombre: 'Fondo Premium B', montoMinimo: 500000, estado: 'Suscrito' },
-    { id: '3', nombre: 'Fondo Renta Fija C', montoMinimo: 250000, estado: 'Disponible' }
+    {id: '1', nombre: 'Fondo de Inversión A', montoMinimo: 100000, estado: 'Disponible'},
+    {id: '2', nombre: 'Fondo Premium B', montoMinimo: 500000, estado: 'Suscrito'},
+    {id: '3', nombre: 'Fondo Renta Fija C', montoMinimo: 250000, estado: 'Disponible'}
   ];
 
   tableDataSource = new MatTableDataSource<Fondo>(this.defaultFondos);
@@ -78,29 +83,18 @@ export class TableComponent {
     if (this.searchFilter.invalid) {
       return;
     }
-
   }
 
-  suscribir(fondo: Fondo) {
-    console.log('Suscribir a fondo:', fondo);
-  }
-
-  cancelar(fondo: Fondo) {
-    console.log('Cancelar suscripción a fondo:', fondo);
-  }
-
-  verHistorial(fondo: Fondo) {
-    console.log('Ver historial del fondo:', fondo);
-  }
-
-  notificar(fondo: Fondo) {
-    console.log('Enviar notificación de fondo:', fondo);
-  }
-
-  subscription(){
-    this.dialog.open(SubscribeComponent, {
+  cancel(element: any) {
+    this.dialog.open(CancellationsComponent, {
       width: '580px'
-      })
+    })
+  }
+
+  createUser() {
+    this.dialog.open(CreateUserComponent, {
+      width: '580px'
+    })
   }
 
 }

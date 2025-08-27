@@ -1,0 +1,86 @@
+.content-card {
+  width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px;
+  transition: all 0.3s ease;
+
+  .card-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+
+    .title-card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      span {
+        font-size: 18px;
+        font-weight: 500;
+        color: #384461;
+        margin-bottom: 10px;
+      }
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: #A0A0A0;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+  }
+
+  .card-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+
+    .amount-card {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        font-size: 14px;
+        color: #A0A0A0;
+        font-weight: 400;
+        margin-bottom: 16px;
+      }
+
+    }
+
+    .risk-card {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        font-size: 14px;
+        color: #A0A0A0;
+        font-weight: 400;
+        margin-bottom: 16px;
+      }
+
+    }
+
+  }
+
+}
+

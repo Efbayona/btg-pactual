@@ -19,3 +19,15 @@
   justify-content: center;
   flex-wrap: nowrap;
 }
+
+.form-error {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  display: inline-block;
+  color: #DA1E28;
+  margin: 4px 4px 0 0;
+  font-weight: 400;
+  height: 8px;
+  font-size: 12px;
+}
