@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CardFoundComponent} from '@app/shared/layouts/card-found/card-found.component';
 import {Found} from '@app/shared/interfaces/found.interfaces';
 import {CreateUserComponent} from '@app/shared/layouts/create-user/create-user.component';
 import {MatDialog} from '@angular/material/dialog';
-import {StorageService} from '@app/core/services/storage/storage.service';
 
 @Component({
   selector: 'app-founds',
@@ -15,9 +14,7 @@ import {StorageService} from '@app/core/services/storage/storage.service';
 })
 export class FoundsComponent implements OnInit {
 
-  constructor(private dialog: MatDialog,
-              private storage: StorageService,) {
-
+  constructor(private dialog: MatDialog,) {
   }
 
   founds: Found[] = [
@@ -58,17 +55,13 @@ export class FoundsComponent implements OnInit {
     }
   ];
 
-  ngOnInit(): void {
-    const user: string | null = this.storage.getItem('user');
-    if (!user) {
-      this.createUser();
-    }
-  }
-
   createUser() {
     this.dialog.open(CreateUserComponent, {
       width: '580px'
     })
+  }
+
+  ngOnInit(): void {
   }
 
 }

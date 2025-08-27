@@ -13,7 +13,7 @@ export interface Found {
 }
 
 export interface SubscribeFundRequest {
-  user: string;
-  found: string;
-  amount: number;
+  acquire_funds_id: string;
+  document_user: string;
+  transaction_type: string;
 }

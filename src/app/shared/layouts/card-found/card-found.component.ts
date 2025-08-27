@@ -27,7 +27,7 @@ export class CardFoundComponent implements OnInit {
     console.log(found)
     this.dialog.open(SubscribeComponent, {
       width: '580px',
-      data: { found }
+      data: this.found.id
     })
   }
 

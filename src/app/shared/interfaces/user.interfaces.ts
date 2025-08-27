@@ -2,7 +2,8 @@ export interface CreateUserRequest {
   name: string;
   lastName: string;
   email: string;
-  documentNumber: string;
-  phoneNumber: string;
+  document_number: string;
+  phone_number: string;
   amount: number;
 }
+

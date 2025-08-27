@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -22,13 +22,8 @@ import {CreateUserComponent} from '@app/shared/layouts/create-user/create-user.c
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {LoadingService} from '@app/core/services/loading/loading.service';
 import {Observable} from 'rxjs';
-
-export interface Fondo {
-  id: string;
-  nombre: string;
-  montoMinimo: number;
-  estado: 'Disponible' | 'Suscrito';
-}
+import {TransactionsService} from '@app/shared/services/transactions-service/transactions.service';
+import {Transaction} from '@app/shared/interfaces/transactions.interfaces';
 
 @Component({
   selector: 'app-table',
@@ -54,29 +49,19 @@ export interface Fondo {
   standalone: true,
   styleUrl: './table.component.scss'
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   public loadingTable: Observable<boolean>;
+  dataTable: Transaction[] = [];
 
   constructor(private dialog: MatDialog,
+              private transactions: TransactionsService,
               private _loader: LoadingService) {
     this.loadingTable = this._loader.loadingTable$;
   }
 
   searchFilter: FormControl = new FormControl('', [Validators.maxLength(30)]);
 
-  @Input() set tableData(data: Fondo[]) {
-    this.tableDataSource = new MatTableDataSource(
-      data && data.length > 0 ? data : this.defaultFondos
-    );
-  }
-
-  defaultFondos: Fondo[] = [
-    {id: '1', nombre: 'Fondo de Inversión A', montoMinimo: 100000, estado: 'Disponible'},
-    {id: '2', nombre: 'Fondo Premium B', montoMinimo: 500000, estado: 'Suscrito'},
-    {id: '3', nombre: 'Fondo Renta Fija C', montoMinimo: 250000, estado: 'Disponible'}
-  ];
-
-  tableDataSource = new MatTableDataSource<Fondo>(this.defaultFondos);
+  tableDataSource = new MatTableDataSource<Transaction>(this.dataTable);
   displayedColumns: string[] = ['nombre', 'montoMinimo', 'estado', 'acciones'];
 
   applyFilterSearch(search: string) {
@@ -85,15 +70,38 @@ export class TableComponent {
     }
   }
 
-  cancel(element: any) {
-    this.dialog.open(CancellationsComponent, {
-      width: '580px'
+  cancel(transaction: Transaction) {
+    let dialogRef =  this.dialog.open(CancellationsComponent, {
+      width: '580px',
+      data: transaction
     })
+    dialogRef.afterClosed().subscribe(() => {
+      this.consultTable();
+    });
+
   }
 
   createUser() {
-    this.dialog.open(CreateUserComponent, {
+    let dialogRef =  this.dialog.open(CreateUserComponent, {
       width: '580px'
+    })
+    dialogRef.afterClosed().subscribe(() => {
+      this.consultTable();
+    });
+  }
+
+  ngOnInit(): void {
+    this.consultTable();
+  }
+
+  consultTable() {
+    this._loader.showLoaderTable();
+    this.transactions.getTransactions().subscribe({
+      next: (data) => {
+        this.dataTable = data;
+        this.tableDataSource.data = this.dataTable;
+        this._loader.hideLoaderTable();
+      }
     })
   }
 

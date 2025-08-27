@@ -36,7 +36,6 @@ export class CreateUserComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<CreateUserComponent>,
               private userService: UserService,
               private loader: LoadingService,
-              private storage: StorageService,
               private alert: AlertService,) {
   }
 
@@ -59,6 +58,7 @@ export class CreateUserComponent implements OnInit {
 
     if (this.formCreateUser.invalid) {
       this.formCreateUser.markAllAsTouched();
+      this.loader.hide();
       return;
     }
 
@@ -66,23 +66,24 @@ export class CreateUserComponent implements OnInit {
       name: this.formCreateUser.get('name')?.value,
       lastName: this.formCreateUser.get('lastName')?.value,
       email: this.formCreateUser.get('email')?.value,
-      documentNumber: this.formCreateUser.get('documentNumber')?.value,
-      phoneNumber: this.formCreateUser.get('phoneNumber')?.value,
+      document_number: this.formCreateUser.get('documentNumber')?.value,
+      phone_number: this.formCreateUser.get('phoneNumber')?.value,
       amount: 500000
     };
 
     this.userService.createUser(user).subscribe({
       next: (data) => {
-        this.storage.setItem('user', data);
         this.loader.hide();
+        this.destroyModal();
         this.alert.success('Usuario Creado Correctamente');
       },
       error: (err) => {
         this.loader.hide();
         this.alert.error('Error Creando el Usuario');
       }
-    })
+    });
   }
+
 
   destroyModal(): void {
     this.dialogRef.close();

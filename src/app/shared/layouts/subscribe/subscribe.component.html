@@ -8,7 +8,7 @@
   </div>
   <form class="content-form-subscribe" [formGroup]="formRegisterSubscribeFund">
     <div class="grid">
-      <div class="col-6 lg:col-6">
+      <div class="col-12 lg:col-12">
         <div class="input-group">
           <input type="text" formControlName="user" appValidateErrors>
           <label class="input-title">Usuario (*)</label>
@@ -16,7 +16,13 @@
       </div>
       <div class="col-6 lg:col-6">
         <div class="input-group">
-          <input type="text" formControlName="amount" appValidateErrors>
+          <input type="text" formControlName="document_number" appValidateErrors>
+          <label class="input-title">Numero de documento (*)</label>
+        </div>
+      </div>
+      <div class="col-6 lg:col-6">
+        <div class="input-group">
+          <input type="text" formControlName="amount"  appValidateErrors>
           <label class="input-title">Monto (*)</label>
         </div>
       </div>

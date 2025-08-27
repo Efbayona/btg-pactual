@@ -36,7 +36,7 @@ export class SubscribeComponent implements OnInit {
               private alert: AlertService,
               private subscribeService: SubscribeService,
               private dialogRef: MatDialogRef<SubscribeComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Found ) {
+              @Inject(MAT_DIALOG_DATA) public foundId: string ) {
   }
 
   ngOnInit() {
@@ -46,36 +46,39 @@ export class SubscribeComponent implements OnInit {
   initFormSubscribeFund(): void {
     this.formRegisterSubscribeFund = new FormGroup({
       user: new FormControl('', [Validators.required]),
+      document_number: new FormControl('', [Validators.required]),
       amount: new FormControl('', [Validators.required]),
     });
   }
 
   subscribeFund() {
-      this.loader.show();
+    this.loader.show();
 
-      if (this.formRegisterSubscribeFund.invalid) {
-        this.formRegisterSubscribeFund.markAllAsTouched();
-        return;
-      }
-
-      const subscribe: SubscribeFundRequest = {
-        user: this.formRegisterSubscribeFund.get('user')?.value,
-        found: this.data.id,
-        amount: this.formRegisterSubscribeFund.get('amount')?.value,
-      };
-
-    console.log(subscribe)
-      this.subscribeService.subscribeFound(subscribe).subscribe({
-        next: (data) => {
-          this.loader.hide();
-          this.alert.success('Usuario Creado Correctamente');
-        },
-        error: (err) => {
-          this.loader.hide();
-          this.alert.error('Error Creando el Usuario');
-        }
-      })
+    if (this.formRegisterSubscribeFund.invalid) {
+      this.formRegisterSubscribeFund.markAllAsTouched();
+      this.loader.hide();
+      return;
     }
+
+    const subscribe: SubscribeFundRequest = {
+      acquire_funds_id: this.foundId,
+      document_user: this.formRegisterSubscribeFund.get('document_number')?.value,
+      transaction_type: "OPENING"
+    };
+
+    this.subscribeService.subscribeFound(subscribe).subscribe({
+      next: (data) => {
+        this.loader.hide();
+        this.destroyModal();
+        this.alert.success('Suscripción realizada correctamente');
+      },
+      error: (err) => {
+        this.loader.hide();
+        this.alert.error('Error al realizar la suscripción');
+      }
+    });
+  }
+
 
   destroyModal(): void {
     this.dialogRef.close();

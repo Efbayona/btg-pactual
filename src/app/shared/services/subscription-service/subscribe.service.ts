@@ -12,7 +12,7 @@ export class SubscribeService {
   constructor(private http: HttpClient) { }
 
   subscribeFound(data: SubscribeFundRequest): Observable<SubscriptionFound> {
-    return this.http.post<any>(environment.api + 'subscribe', data);
+    return this.http.post<any>(environment.api + 'transactions/', data);
   }
 
 }

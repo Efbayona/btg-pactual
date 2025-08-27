@@ -1,6 +1,6 @@
 export const environment = {
 
   /* --- Url backend ---- */
-  api: 'http://localhost:8080/app/',
+  api: 'http://localhost:8002/app/',
 
 }

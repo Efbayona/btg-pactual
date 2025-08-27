@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CancellationsService} from '@app/shared/services/cancellation-service/cancellations.service';
 import {LoadingService} from '@app/core/services/loading/loading.service';
 import {AlertService} from '@app/core/services/alert/alert.service';
+import {SubscribeFundRequest} from '@app/shared/interfaces/found.interfaces';
+import {Transaction} from '@app/shared/interfaces/transactions.interfaces';
 
 @Component({
   selector: 'app-cancellations',
@@ -18,15 +20,23 @@ export class CancellationsComponent {
   constructor(private dialogRef: MatDialogRef<CancellationsComponent>,
               private loader: LoadingService,
               private alert: AlertService,
-              private cancelService: CancellationsService) { }
-
+              private cancelService: CancellationsService,
+              @Inject(MAT_DIALOG_DATA) public transaction: Transaction) {
+  }
 
   cancelFound() {
     this.loader.show();
 
-    this.cancelService.cancelFound("subscribe").subscribe({
+    const cancel: SubscribeFundRequest = {
+      acquire_funds_id: this.transaction.id,
+      document_user: this.transaction.document_number,
+      transaction_type: "CLOSING"
+    };
+
+    this.cancelService.cancelFound(cancel).subscribe({
       next: (data) => {
         this.loader.hide();
+        this.destroyModal();
         this.alert.success('Subscripcion al fondo cancelada correctamente');
       },
       error: (err) => {
@@ -39,6 +49,5 @@ export class CancellationsComponent {
   destroyModal(): void {
     this.dialogRef.close();
   }
-
 
 }
