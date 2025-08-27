@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use './_theme' as app-colors;
+
+$myapp-theme-primary: mat.m2-define-palette(app-colors.$custom-material-primary-palette, 900);
+$myapp-theme-accent: mat.m2-define-palette(mat.$m2-indigo-palette, A200, A100, A400);
+$myapp-theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$myapp-light-theme: mat.m2-define-light-theme((
+        color: (
+                primary: $myapp-theme-primary,
+                accent: $myapp-theme-accent,
+                warn: $myapp-theme-warn,
+        ),
+));
+
+$myapp-dark-theme: mat.m2-define-dark-theme((
+        color: (
+                primary: $myapp-theme-primary,
+                accent: $myapp-theme-accent,
+                warn: $myapp-theme-warn,
+        ),
+));
+
+@mixin mi-app-material-theme($theme) {
+  @include mat.all-component-themes($theme);
+}

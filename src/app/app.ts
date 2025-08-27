@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AlertService} from '@app/core/services/alert/alert.service';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,12 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('project');
+export class App implements OnInit {
+
+ constructor(private _alert: AlertService) {
+ }
+
+  ngOnInit() {
+    this._alert.warning('Error');
+  }
 }

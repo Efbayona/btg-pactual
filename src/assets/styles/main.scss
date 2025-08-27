@@ -1,0 +1,14 @@
+/*** 1. Vendors ***/
+@use "vendors/normalize";
+
+/*** 2. Base ***/
+@use "base/typography";
+
+/*** 3. Page ***/
+@use "pages/landing";
+
+/*** 4. Components ***/
+@use "components/header";
+@use "components/alerts";
+
+
