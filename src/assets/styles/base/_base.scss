@@ -1,0 +1,21 @@
+.btn {
+  height: 42px;
+  display: inline-flex;
+  font-weight: 400;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #28BBC9;
+  color: white;
+  font-size: 14px;
+  padding: 14px 32px;
+  border-radius: 4px;
+  border: 0;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}

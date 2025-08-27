@@ -3,11 +3,13 @@
 
 /*** 2. Base ***/
 @use "base/typography";
+@use "base/base";
 
-/*** 3. Page ***/
-@use "pages/landing";
+/*** 4. Pages ***/
+@use "pages/subscriber";
 
 /*** 4. Components ***/
+@use "components/table";
 @use "components/header";
 @use "components/alerts";
 

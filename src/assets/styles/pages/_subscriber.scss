@@ -1,0 +1,208 @@
+.content-subscribe {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 28px 20px;
+  background: white;
+
+  .form-group-title {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    color: #384461;
+    margin-bottom: 10px;
+  }
+
+  .form-group-text {
+    font-size: 14px;
+    color: #A0A0A0;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .subscribe-add-header {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+
+    .close-add-subscribe {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i {
+        font-weight: 600;
+        color: #5A5A5A;
+        font-size: 22px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .content-form-subscribe {
+    width: 100%;
+
+    .filter-report-group {
+      position: relative;
+
+      .clear-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0 7px;
+        font-weight: 600;
+        font-size: 11px;
+        color: #666;
+      }
+
+      .img-icon {
+        width: 28px;
+        margin-right: 10px;
+      }
+
+      .container-ng-select {
+        width: 100%;
+        height: 42px;
+        border: 1px solid #d1d1d1;
+        border-radius: 8px;
+        padding: 0 9px;
+        font-size: 14px;
+        color: #333;
+        background-color: white;
+
+        .ng-select-container {
+          background-color: white; //Ajuste
+          border: none;
+          outline: none;
+          box-shadow: none;
+          padding: 0;
+          color: theme-palette-color('grays', 800);
+        }
+
+        &.ng-select-focused {
+          &:not(.ng-select-opened) > .ng-select-container {
+            border-color: theme-palette-color('grays', 300);
+            box-shadow: none;
+          }
+        }
+      }
+
+      .input-title {
+        position: absolute;
+        font-size: 12px;
+        color: #A0A0A0;
+        z-index: 1002;
+        pointer-events: none;
+        background: linear-gradient(to bottom, transparent 50%, white 50%);
+        left: 16px;
+        padding: 0 4px;
+        top: 0;
+        transform: translateY(-50%);
+      }
+
+    }
+
+
+    .input-group {
+      border: 1.5px solid #d1d1d1;
+      background: #FFF;
+      width: 100%;
+      height: 42px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 6px 16px;
+      position: relative;
+      margin-bottom: 24px;
+
+      input {
+        background: none;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        z-index: 2;
+        width: 100%;
+        color: #5C5C5C;
+
+        &:disabled ~ .input-title,
+        &.ng-dirty ~ .input-title {
+          font-size: 12px;
+          top: 0;
+          padding: 0 4px;
+          left: 12px;
+          background: #FFF;
+        }
+
+        &:-webkit-autofill {
+          box-shadow: 0 0 0 1000px white inset;
+          -webkit-box-shadow: 0 0 0 1000px white inset;
+          background-color: transparent !important;
+        }
+      }
+
+      .icon {
+        font-size: 18px;
+        color: #A0A0A0;
+      }
+
+      .icon-right {
+        margin-left: 16px;
+      }
+
+      .icon-password-directive {
+        cursor: pointer;
+      }
+
+      .icon-padlock {
+        cursor: pointer;
+      }
+
+      .input-title {
+        position: absolute;
+        font-size: 14px;
+        color: #A0A0A0;
+        z-index: 1;
+        pointer-events: none;
+        transition: all 0.25s ease;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:focus-within {
+        .input-title {
+          font-size: 12px;
+          top: 0;
+          background: #FFF;
+          padding: 0 4px;
+          font-weight: 500;
+          color: theme-palette-color('color', 'input');
+          left: 12px;
+        }
+
+        .icon {
+          color: theme-palette-color('color', 'input');
+        }
+
+        border: 1.5px solid theme-palette-color('color', 'input');
+      }
+    }
+  }
+
+  .content-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+  }
+}

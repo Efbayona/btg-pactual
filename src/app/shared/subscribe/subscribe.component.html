@@ -1,0 +1,46 @@
+<div class="content-subscribe">
+  @if (loader) {
+    <app-loading-modal/>
+  }
+  <div class="subscribe-add-header">
+    <div class="close-add-subscribe">
+      <span class="form-group-title">{{ title }}</span>
+      <i class="icon-close" (click)="destroyModal()"></i>
+    </div>
+    <span class="form-group-text">{{ subtitle }}</span>
+  </div>
+  <form class="content-form-subscribe" [formGroup]="formRegisterSubscribeFund">
+    <div class="grid">
+      <div class="col-12 lg:col-12">
+        <div class="filter-report-group">
+          <span class="input-title">Seleccione un fondo</span>
+          <ng-select
+            [items]="found"
+            bindLabel="label"
+            bindValue="value"
+            [clearable]="false"
+            [searchable]="false"
+            appValidateErrors
+            formControlName="found"
+            class="container-ng-select m-b-20 w-100">
+          </ng-select>
+        </div>
+      </div>
+      <div class="col-6 lg:col-6">
+        <div class="input-group">
+          <input type="text" formControlName="user" appValidateErrors>
+          <label class="input-title">Usuario (*)</label>
+        </div>
+      </div>
+      <div class="col-6 lg:col-6">
+        <div class="input-group">
+          <input type="text" formControlName="amount" appValidateErrors>
+          <label class="input-title">Monto (*)</label>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="content-button">
+    <button class="btn" (click)="subscribeFund()">Subscribirse</button>
+  </div>
+</div>

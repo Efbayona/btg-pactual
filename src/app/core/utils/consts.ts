@@ -5,3 +5,7 @@ export const TABLE_ACTIONS= {
 }
 export const IMAGE_lOGO_EXTENSIONS: String[] = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
 
+export interface Select {
+  value: string | boolean,
+  label: string
+}

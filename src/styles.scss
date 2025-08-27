@@ -1,6 +1,7 @@
 @use "assets/styles/main";
 @use '@angular/material' as mat;
 @use 'assets/styles/themes/_theme' as app-theming;
+@import "node_modules/primeflex/primeflex.css";
 
 @include mat.core();
 
