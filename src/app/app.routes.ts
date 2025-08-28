@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {FoundsComponent} from '@app/modules/founds/founds.component';
 import {TableComponent} from '@app/shared/layouts/table/table.component';
 

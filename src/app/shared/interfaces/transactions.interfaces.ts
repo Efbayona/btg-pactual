@@ -7,4 +7,5 @@ export interface Transaction {
   name_acquired_fund: string;
   minimum_amount: number;
   category: string;
+  acquire_funds_id: string;
 }

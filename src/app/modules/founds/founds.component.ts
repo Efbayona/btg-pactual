@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
     CardFoundComponent
   ],
   templateUrl: './founds.component.html',
+  standalone: true,
   styleUrl: './founds.component.scss'
 })
 export class FoundsComponent implements OnInit {
@@ -54,12 +55,6 @@ export class FoundsComponent implements OnInit {
       category: 'FPV'
     }
   ];
-
-  createUser() {
-    this.dialog.open(CreateUserComponent, {
-      width: '580px'
-    })
-  }
 
   ngOnInit(): void {
   }

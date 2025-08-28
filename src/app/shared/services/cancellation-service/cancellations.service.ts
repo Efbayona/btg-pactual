@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '@env/environment';
+import {SubscribeFundRequest, SubscriptionFound} from '@app/shared/interfaces/found.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class CancellationsService {
 
   constructor(private http: HttpClient) { }
 
-  cancelFound(data: any): Observable<any> {
-    return this.http.post<any>(environment.api + 'cancel', data);
+  cancelFound(data: SubscribeFundRequest): Observable<SubscriptionFound> {
+    return this.http.post<any>(environment.api + 'transactions/', data);
   }
 
 }

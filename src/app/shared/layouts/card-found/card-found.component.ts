@@ -10,6 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
     DecimalPipe
   ],
   templateUrl: './card-found.component.html',
+  standalone: true,
   styleUrl: './card-found.component.scss'
 })
 export class CardFoundComponent implements OnInit {

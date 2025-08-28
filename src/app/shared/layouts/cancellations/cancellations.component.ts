@@ -10,6 +10,7 @@ import {Transaction} from '@app/shared/interfaces/transactions.interfaces';
   selector: 'app-cancellations',
   imports: [],
   templateUrl: './cancellations.component.html',
+  standalone: true,
   styleUrl: './cancellations.component.scss'
 })
 export class CancellationsComponent {
@@ -28,7 +29,7 @@ export class CancellationsComponent {
     this.loader.show();
 
     const cancel: SubscribeFundRequest = {
-      acquire_funds_id: this.transaction.id,
+      acquire_funds_id: this.transaction.acquire_funds_id,
       document_user: this.transaction.document_number,
       transaction_type: "CLOSING"
     };
